@@ -1,3 +1,5 @@
+# Deployment do MongoDB
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,6 +24,7 @@ spec:
             - name: MONGO_INITDB_ROOT_PASSWORD
               value: mongopwd
 ---
+# Service do mongo db
 apiVersion: v1
 kind: Service
 metadata:
@@ -34,6 +37,7 @@ spec:
       targetPort: 27017
   type: ClusterIP
 ---
+# Deployment da pagina web rotten potatoes
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -49,7 +53,7 @@ spec:
     spec:
       containers:
       - name: movies
-        image: fabricioveronez/rotten-potatoes:v1
+        image: ericosa/rotten-potatoes:v2
         ports:
           - containerPort: 5000
         env:
@@ -64,6 +68,7 @@ spec:
           - name: MONGODB_PASSWORD
             value: mongopwd
 ---
+#Service App potatoes
 apiVersion: v1
 kind: Service
 metadata:
@@ -75,4 +80,4 @@ spec:
   - port: 80
     targetPort: 5000
     nodePort: 30000
-  type: LoadBalancer
+  type: NodePort
