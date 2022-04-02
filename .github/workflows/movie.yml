@@ -39,7 +39,7 @@ jobs:
         uses: Azure/k8s-set-context@v2
         with: 
           method: kubeconfig
-          kubeconfig: ${{ secrets.K8S_CONFIG_MOVIE }}
+          kubeconfig: ${{ secrets.K8S_CONFIG }}
           
       - name: Deploy to Kubernetes cluster
         uses: Azure/k8s-deploy@v3.0
