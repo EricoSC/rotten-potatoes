@@ -27,6 +27,6 @@ jobs:
             context: .src/
             file: ./src/Dockerfile
             push: true 
-            tags:
+            tags: |
               ericosa/rotten-potatoes:latest
-              ericosa/rotten-potatoes:${{github.run_number}}
+              ericosa/rotten-potatoes:${{ github.run_number }}
