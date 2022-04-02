@@ -41,3 +41,9 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.K8S_CONFIG_MOVIE }}
           
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v3.0
+        with:
+          images: ericosa/rotten-potatoes:${{ github.run_number }}
+          manifest : |
+            k8s/Deployment.yaml
